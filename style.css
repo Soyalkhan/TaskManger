@@ -1,0 +1,104 @@
+body{
+    padding: 0%;
+    margin: 0%;
+    font-family: "Montserrat", sans-serif;
+    background-color: #C3ACD0;
+}
+h1{
+    text-align: center;
+    margin-top: 20px;
+    color: #5405af;
+}
+.container{
+display: flex;
+justify-content: center;
+align-items: center;
+}
+.main{
+    height: 600px;
+    width: 550px;
+    background-color:#F7EFE5;
+    margin-top: 20px;
+
+}
+.in-btn{
+    display: flex;
+}
+
+.inputBox{
+    width: 100%;
+    padding: 10px;
+    font-size: 15px;
+    font-weight: 600;
+    color: rgb(20, 96, 209);
+    background-color:#F7EFE5;
+    border: 1px solid rgb(150, 147, 147);
+}
+.inputBox:focus{
+    outline: none;
+    border:3px solid #5405af;
+}
+
+
+
+.list{
+    color: rgb(65, 63, 63);
+    margin-left: 20px;
+    padding: 20px;
+    max-width:500px;
+    word-wrap:break-word;
+    list-style-type: square;
+    text-transform: capitalize;
+   
+}
+.list li{
+    margin-top: 5px;
+}
+.addTaskBTN{
+    width: 100px;
+    background-color: rgb(202, 55, 55);
+    color: white;
+    font-size: 12px;
+    font-weight:800;
+    padding: 5px;
+    cursor: pointer;
+    border:none;
+    justify-content: center;
+    text-align: center;
+    
+}
+
+.addTaskBTN:hover{
+    transition: 0.2s ease-in;
+    background-color: #7743DB;
+}
+
+/* remove only one btn */
+.taskDelete{
+    border-radius:3px;
+    text-align: center;
+    padding: 5px;
+    height: 23px;
+    width: 20px;
+    border: none;
+    cursor: pointer;
+    color: white;
+    margin-left: 10px;
+    background-color: red;
+}
+
+/* delete all btn */
+.dltall{
+    background-color: red;
+    color: white;
+    width: 100px;
+    text-align: center;
+    font-weight: 700;
+    padding: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+.dltall:hover{
+    transition: 0.1s ease-in;
+    background-color: #7743DB;
+}
