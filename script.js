@@ -13,7 +13,7 @@ const AddTask = () => {
     let tasks = JSON.parse(localStorage.getItem("Tasks")) || [];
     let task = {
       id: id,
-      content: inputBox.value,
+      content: inputBox.value
     };
     tasks.push(task);
     id++;
@@ -31,9 +31,15 @@ const showTasks = () => {
     li.innerHTML = task.content; // to show data
     li.dataset.taskId = task.id; // Set the task ID as a data attribute
     let btn = document.createElement("button");
+    let checkbox = document.createElement("input");
+    checkbox.type ="checkbox"
+    checkbox.className = "isCompleted";
+    
     btn.className = "taskDelete";
     btn.innerHTML = "x";
+    
     li.appendChild(btn);
+    li.appendChild(checkbox);
     ul.appendChild(li);
   });
 };
@@ -41,11 +47,11 @@ const showTasks = () => {
 const taskDeleteFn = (event) => {
   let tasks = JSON.parse(localStorage.getItem("Tasks")) || [];
   const li = event.target.closest("li");
-  const taskId = li.dataset.taskId;
+  const taskId = parseInt(li.dataset.taskId);//converting cause by default its string.
 
   console.log("Task ID:", taskId); // Debugging
 
-  const index = tasks.findIndex(task => task.id === taskId);
+  const index = tasks.findIndex((task) => task.id === taskId);
   console.log("Index:", index); // Debugging
 
   if (index !== -1) {
@@ -58,7 +64,6 @@ const taskDeleteFn = (event) => {
 
   li.remove();
 };
-
 
 const TrashAll = () => {
   ul.innerHTML = "";

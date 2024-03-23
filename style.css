@@ -45,8 +45,8 @@ margin: 0px 15px 0px 15px;;
 }
 
 
-
 .list{
+   
     color: rgb(65, 63, 63);
     margin-left: 20px;
     padding: 20px;
@@ -106,4 +106,9 @@ margin: 0px 15px 0px 15px;;
 .dltall:hover{
     transition: 0.1s ease-in;
     background-color: #7743DB;
+}
+.isCompleted{
+    height: 20px;
+    width: 20px;
+    background-color: #011b30;
 }
