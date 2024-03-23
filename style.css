@@ -13,26 +13,31 @@ h1{
 display: flex;
 justify-content: center;
 align-items: center;
+margin: 0px 15px 0px 15px;;
 }
 .main{
-    height: 600px;
+    height: auto;
     width: 550px;
     background-color:#F7EFE5;
     margin-top: 20px;
-
+    border: 3px  solid rgb(150, 147, 147);
 }
 .in-btn{
     display: flex;
 }
 
 .inputBox{
+
     width: 100%;
     padding: 10px;
     font-size: 15px;
     font-weight: 600;
     color: rgb(20, 96, 209);
     background-color:#F7EFE5;
-    border: 1px solid rgb(150, 147, 147);
+    border:3px solid #5405af;
+    border-right: 3px solid rgb(150, 147, 147);
+    border:3px solid rgb(202, 55, 55);;
+
 }
 .inputBox:focus{
     outline: none;
@@ -48,7 +53,7 @@ align-items: center;
     max-width:500px;
     word-wrap:break-word;
     list-style-type: square;
-    text-transform: capitalize;
+    /* text-transform: capitalize; */
    
 }
 .list li{
