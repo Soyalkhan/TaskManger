@@ -39,7 +39,7 @@ const showTasks = () => {
     btn.innerHTML = "x";
     
     li.appendChild(btn);
-    li.appendChild(checkbox);
+    ul.appendChild(checkbox);
     ul.appendChild(li);
   });
 };
