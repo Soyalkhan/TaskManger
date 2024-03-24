@@ -13,7 +13,8 @@ const AddTask = () => {
     let tasks = JSON.parse(localStorage.getItem("Tasks")) || [];
     let task = {
       id: id,
-      content: inputBox.value
+      content: inputBox.value,
+      completed: false // Adding a completed property
     };
     tasks.push(task);
     id++;
@@ -24,24 +25,67 @@ const AddTask = () => {
 };
 
 const showTasks = () => {
-  let tasks = JSON.parse(localStorage.getItem("Tasks")) || [];
+  let tasksData = localStorage.getItem("Tasks");
+  let tasks = [];
+
+  // Check if tasksData is null or not
+  if (tasksData !== null) {
+    tasks = JSON.parse(tasksData);
+  } else {
+    console.log("No tasks found in localStorage.");
+  }
+
   ul.innerHTML = "";
-  tasks.forEach((task) => {
-    let li = document.createElement("li");
-    li.innerHTML = task.content; // to show data
-    li.dataset.taskId = task.id; // Set the task ID as a data attribute
-    let btn = document.createElement("button");
-    let checkbox = document.createElement("input");
-    checkbox.type ="checkbox"
-    checkbox.className = "isCompleted";
-    
-    btn.className = "taskDelete";
-    btn.innerHTML = "x";
-    
-    li.appendChild(btn);
-    ul.appendChild(checkbox);
-    ul.appendChild(li);
-  });
+
+  // Ensure tasks is an array before using forEach
+  if (Array.isArray(tasks)) {
+    tasks.forEach((task) => {
+      let li = document.createElement("li");
+      li.dataset.taskId = task.id;
+
+      let checkbox = document.createElement("input");
+      checkbox.type = "checkbox";
+      checkbox.checked = task.completed;
+      checkbox.addEventListener("change", function () {
+        task.completed = checkbox.checked;
+        updateLocalStorage(tasks);
+        updateTaskDisplay(li, task);
+      });
+
+      let label = document.createElement("label");
+      label.appendChild(document.createTextNode(task.content));
+      if (task.completed) {
+        li.style.textDecoration = "line-through";
+      }
+
+      let btn = document.createElement("button");
+      btn.className = "taskDelete";
+      btn.innerHTML = "x";
+
+      li.appendChild(checkbox);
+      li.appendChild(label);
+      li.appendChild(btn);
+      ul.appendChild(li);
+    });
+  } else {
+    console.error("Tasks is not an array:", tasks);
+  }
+};
+
+
+
+
+const updateTaskDisplay = (li, task) => {
+  if (task.completed) {
+    li.style.textDecoration = "line-through"; // Apply line-through style if task is completed
+  } else {
+    li.style.textDecoration = "none"; // Remove line-through style if task is not completed
+  }
+};
+
+
+const updateLocalStorage = (task) => {
+  localStorage.setItem("Tasks", JSON.stringify(task));
 };
 
 const taskDeleteFn = (event) => {
@@ -49,14 +93,15 @@ const taskDeleteFn = (event) => {
   const li = event.target.closest("li");
   const taskId = parseInt(li.dataset.taskId);//converting cause by default its string.
 
-  console.log("Task ID:", taskId); // Debugging
+  console.log("Task ID:", taskId); 
 
   const index = tasks.findIndex((task) => task.id === taskId);
-  console.log("Index:", index); // Debugging
+  console.log("Index:", index);
 
   if (index !== -1) {
     tasks.splice(index, 1);
-    localStorage.setItem("Tasks", JSON.stringify(tasks));
+    // localStorage.setItem("Tasks", JSON.stringify(tasks));
+    updateLocalStorage(tasks); // Update local storage after task deletion
     console.log("Task deleted successfully");
   } else {
     console.log("Task not found in tasks array:", taskId);
