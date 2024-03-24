@@ -46,6 +46,7 @@ const showTasks = () => {
       let checkbox = document.createElement("input");
       checkbox.type = "checkbox";
       checkbox.checked = task.completed;
+      
       checkbox.addEventListener("change", function () {
         task.completed = checkbox.checked;
         updateLocalStorage(tasks);
